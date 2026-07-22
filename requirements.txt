@@ -1,11 +1,10 @@
+streamlit>=1.35.0
 langchain>=0.3.0
 langchain-core>=0.3.0
 langchain-community>=0.3.0
-langchain-openai>=0.3.0
+langchain-mistralai>=0.2.0
 langgraph>=0.4.0
 langsmith>=0.3.0
-
-openai>=1.100.0
 
 tavily-python>=0.7.0
 
@@ -22,6 +21,3 @@ pydantic>=2.11.0
 httpx>=0.28.0
 typing-extensions>=4.15.0
 tenacity>=9.1.0
-
-ipython>=9.0.0
-jupyter>=1.1.0
