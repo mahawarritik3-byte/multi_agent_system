@@ -12,20 +12,30 @@ tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
 
 @tool
 def web_search(query: str) -> str:
-    """Search the web for recent and reliable information on a topic. Return titles, URLs, and snippets."""
+    print("="*60)
+    print("Searching:", query)
 
-    results = tavily.search(query=query, max_results=5)
+    try:
+        results = tavily.search(query=query, max_results=5)
 
-    out = []
+        print("Results:", len(results["results"]))
 
-    for r in results["results"]:
-        out.append(
-            f"Title: {r['title']}\n"
-            f"URL: {r['url']}\n"
-            f"Snippet: {r['content'][:300]}\n"
-        )
+        out = []
 
-    return "\n----\n".join(out)
+        for r in results["results"]:
+            out.append(
+                f"Title: {r['title']}\n"
+                f"URL: {r['url']}\n"
+                f"Snippet: {r['content'][:300]}"
+            )
+
+        print("Finished search")
+
+        return "\n----\n".join(out)
+
+    except Exception as e:
+        print("ERROR:", e)
+        return ""
 
 @tool
 def scrape_url(url: str) -> str:
