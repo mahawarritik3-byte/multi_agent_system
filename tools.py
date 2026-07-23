@@ -1,3 +1,4 @@
+print("TAVILY KEY:", os.getenv("TAVILY_API_KEY"))
 from langchain.tools import tool
 from tavily import TavilyClient
 from dotenv import load_dotenv
