@@ -1,19 +1,22 @@
-print("TAVILY KEY:", os.getenv("TAVILY_API_KEY"))
+import os
+import requests
+
 from langchain.tools import tool
 from tavily import TavilyClient
 from dotenv import load_dotenv
 from rich import print
-import os
-import requests
 from bs4 import BeautifulSoup
+
 load_dotenv()
+
+print("TAVILY KEY:", os.getenv("TAVILY_API_KEY"))
 
 tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
 
 
 @tool
 def web_search(query: str) -> str:
-    print("="*60)
+    print("=" * 60)
     print("Searching:", query)
 
     try:
@@ -31,12 +34,12 @@ def web_search(query: str) -> str:
             )
 
         print("Finished search")
-
         return "\n----\n".join(out)
 
     except Exception as e:
         print("ERROR:", e)
         return ""
+
 
 @tool
 def scrape_url(url: str) -> str:
@@ -58,14 +61,3 @@ def scrape_url(url: str) -> str:
 
     except Exception as e:
         return f"Could not scrape URL: {str(e)}"
-
-
-# # Outside the function
-# print(
-#     scrape_url.invoke(
-#         "https://timesofindia.indiatimes.com/india/no-legal-action-against-cjp-protesters-wangchuk-sets-condition-to-end-hunger-strike/articleshow/132558606.cms"
-#     )
-# )
-
-
- 
